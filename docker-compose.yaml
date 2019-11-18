@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  auto-update:
+    build: auto-update
+    entrypoint: /bin/ash
+    command: "-c '${PWD}/auto-update/bin/watch_and_update.rb'"
+    working_dir: ${PWD}/auto-update
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - ${PWD}:${PWD}
+    - /home/ubuntu/.ssh:/root/.ssh
+    environment:
+    - HOST_ETH_ADDRESS=${HOST_ETH_ADDRESS}
+    
+    
+    
